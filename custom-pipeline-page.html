@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Video Analytics Pipelines | Cyrus Technology</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Content Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2d3748;
+        }
+
+        /* Use Cases Grid */
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .use-case-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .use-case-card h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .use-case-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .use-case-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .use-case-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Why Choose Section */
+        .why-choose {
+            background: #f7fafc;
+            padding: 60px 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        /* Process Section */
+        .process-section {
+            background: white;
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 60px;
+            margin-bottom: 20px;
+        }
+
+        .step h3 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-info {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            margin: 30px auto 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-info a {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid white;
+        }
+
+        .contact-info a:hover {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Custom Video Analytics Pipelines</h1>
+        <p class="subtitle">Tailored Solutions for Your Unique Requirements</p>
+        <p>
+            Need a highly specific video processing pipeline for your use case? At Cyrus, we build 
+            customized video analytics pipelines that precisely match your needs—from edge deployment 
+            on NVIDIA Jetson to cloud-based processing, real-time detection to historical analysis.
+        </p>
+        <a href="#contact" class="cta-button">Get Started Today</a>
+    </div>
+
+    <!-- Use Cases Section -->
+    <div class="container">
+        <h2 class="section-title">What We Build</h2>
+        <div class="use-cases-grid">
+            <div class="use-case-card">
+                <h3>🏭 Industrial & Manufacturing</h3>
+                <ul>
+                    <li>Conveyor belt monitoring and defect detection</li>
+                    <li>Robotic palletizing and production tracking</li>
+                    <li>Quality control and inspection systems</li>
+                    <li>Worker safety and PPE compliance</li>
+                    <li>Production line analytics and optimization</li>
+                </ul>
+            </div>
+
+            <div class="use-case-card">
+                <h3>🏢 Commercial & Retail</h3>
+                <ul>
+                    <li>Customer behavior and traffic analysis</li>
+                    <li>Inventory monitoring and shelf analytics</li>
+                    <li>Queue management and wait time optimization</li>
+                    <li>Loss prevention and security</li>
+                    <li>Occupancy tracking and space utilization</li>
+                </ul>
+            </div>
+
+            <div class="use-case-card">
+                <h3>🚗 Transportation & Logistics</h3>
+                <ul>
+                    <li>Vehicle detection and classification</li>
+                    <li>Parking lot management and analytics</li>
+                    <li>Traffic flow monitoring</li>
+                    <li>Loading dock automation</li>
+                    <li>Fleet management and tracking</li>
+                </ul>
+            </div>
+
+            <div class="use-case-card">
+                <h3>🏗️ Smart Cities & Infrastructure</h3>
+                <ul>
+                    <li>Pedestrian safety and crowd monitoring</li>
+                    <li>Infrastructure inspection and maintenance</li>
+                    <li>Environmental monitoring</li>
+                    <li>Emergency response systems</li>
+                    <li>Public space utilization analytics</li>
+                </ul>
+            </div>
+
+            <div class="use-case-card">
+                <h3>🏥 Healthcare & Senior Care</h3>
+                <ul>
+                    <li>Patient monitoring and fall detection</li>
+                    <li>Staff efficiency and response time tracking</li>
+                    <li>Facility security and access control</li>
+                    <li>Equipment utilization monitoring</li>
+                    <li>Privacy-preserving activity analysis</li>
+                </ul>
+            </div>
+
+            <div class="use-case-card">
+                <h3>🔬 Research & Custom Applications</h3>
+                <ul>
+                    <li>Wildlife and environmental monitoring</li>
+                    <li>Agricultural automation and crop analysis</li>
+                    <li>Sports performance analytics</li>
+                    <li>Scientific research and data collection</li>
+                    <li>Any specialized computer vision task</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Choose Section -->
+    <div class="why-choose">
+        <div class="container">
+            <h2 class="section-title">Why Choose Cyrus for Custom Pipelines</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Deep Technical Expertise</h3>
+                    <p>PhD-level computer vision and distributed systems knowledge with proven real-world deployments</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Optimized Performance</h3>
+                    <p>Edge-optimized pipelines using NVIDIA DeepStream, TensorRT, and hardware acceleration</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Full-Stack Development</h3>
+                    <p>From camera integration to cloud deployment, APIs, and user interfaces</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Rapid Deployment</h3>
+                    <p>Proven frameworks and components that accelerate time-to-production</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Privacy-First Design</h3>
+                    <p>Edge processing and privacy-preserving techniques when needed</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">📈</div>
+                    <h3>Scalable Architecture</h3>
+                    <p>From single-camera prototypes to multi-site enterprise deployments</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Process Section -->
+    <div class="container process-section">
+        <h2 class="section-title">Our Development Process</h2>
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Discovery</h3>
+                <p>Understand your requirements, constraints, and success metrics</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Design</h3>
+                <p>Architect the optimal pipeline for your hardware and performance needs</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Develop</h3>
+                <p>Build and optimize your custom solution with cutting-edge tools</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Deploy</h3>
+                <p>Launch with full integration, testing, and documentation</p>
+            </div>
+            <div class="step">
+                <div class="step-number">5</div>
+                <h3>Support</h3>
+                <p>Ongoing maintenance, updates, and optimization as needed</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section" id="contact">
+        <h2>Ready to Build Your Custom Pipeline?</h2>
+        <p>
+            Whether you need edge deployment on NVIDIA hardware, cloud-based analytics, 
+            or hybrid solutions, we have the expertise to bring your vision to life.
+        </p>
+        <div class="contact-info">
+            <p style="margin-bottom: 15px; font-size: 1.1rem;">Contact us to discuss your project:</p>
+            <a href="mailto:mahshid@cyrussafety.tech">mahshid@cyrussafety.tech</a>
+        </div>
+    </div>
+</body>
+</html>
